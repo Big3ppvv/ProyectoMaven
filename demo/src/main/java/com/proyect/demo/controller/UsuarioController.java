@@ -1,6 +1,8 @@
 package com.proyect.demo.controller;
 
+import com.proyect.demo.dao.UsuarioDao;
 import com.proyect.demo.models.Usuario;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,16 +15,19 @@ import java.util.List;
 @RestController
 public class UsuarioController {
 
+    @Autowired
+    private UsuarioDao usuarioDao;
 
-        @RequestMapping(value = "mensaje")
-        public String mensaje(){
-            return("Hola");
-        }
 
-        @RequestMapping(value = "personas")
-        public List<String> listarPersonas(){
-                return List.of("Joaquin");
-        }
+//        @RequestMapping(value = "mensaje")
+//        public String mensaje(){
+//            return("Hola");
+//        }
+//
+//        @RequestMapping(value = "personas")
+//        public List<String> listarPersonas(){
+//                return List.of("Joaquin");
+//        }
 
     @GetMapping(value = "usuarios/lista_usuarios")
     public List<Usuario> getUsuarios(){
@@ -45,6 +50,12 @@ public class UsuarioController {
         usuarios.add(usuario);
         usuarios.add(usuario2);
         return usuarios;
+    }
+
+    @RequestMapping(value = "api/usuarios")
+    public List<Usuario> getUsuario(){
+        List<Usuario> user = usuarioDao.obtenerUsuarios();
+        return user;
     }
 
 }

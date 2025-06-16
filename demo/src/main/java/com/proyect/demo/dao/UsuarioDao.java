@@ -6,7 +6,6 @@ import java.util.List;
 
 public interface UsuarioDao {
 
-    List<Usuario> obtenerUsuarios(){
-        return null;
-    }
+    List<Usuario> obtenerUsuarios();
+
 }
