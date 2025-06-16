@@ -4,13 +4,10 @@ import com.proyect.demo.dao.UsuarioDao;
 import com.proyect.demo.models.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 @RestController
 public class UsuarioController {
@@ -18,17 +15,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioDao usuarioDao;
 
-
-//        @RequestMapping(value = "mensaje")
-//        public String mensaje(){
-//            return("Hola");
-//        }
-//
-//        @RequestMapping(value = "personas")
-//        public List<String> listarPersonas(){
-//                return List.of("Joaquin");
-//        }
-
+    // Endpoint para usuarios hardcodeados (para testing)
     @GetMapping(value = "usuarios/lista_usuarios")
     public List<Usuario> getUsuarios(){
         List<Usuario> usuarios = new ArrayList<>();
@@ -52,10 +39,10 @@ public class UsuarioController {
         return usuarios;
     }
 
-    @RequestMapping(value = "api/usuarios")
+    // Endpoint para usuarios de la base de datos
+    @GetMapping(value = "api/usuarios")
     public List<Usuario> getUsuario(){
         List<Usuario> user = usuarioDao.obtenerUsuarios();
         return user;
     }
-
 }
