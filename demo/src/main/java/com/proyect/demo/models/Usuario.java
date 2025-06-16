@@ -1,21 +1,43 @@
 package com.proyect.demo.models;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "usuarios")
 public class Usuario {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String Nombre;
-    private String Apellido;
-    private String Telefono;
-    private String Password;
+
+    @Column(name = "nombre")
+    private String nombre;
+
+    @Column(name = "apellido")
+    private String apellido;
+
+    @Column(name = "telefono")
+    private String telefono;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "email")
     private String email;
 
-    public String getNombre() {
-        return Nombre;
+    // Constructor vacío (requerido por JPA)
+    public Usuario() {}
+
+    // Constructor con parámetros
+    public Usuario(String nombre, String apellido, String telefono, String password, String email) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = telefono;
+        this.password = password;
+        this.email = email;
     }
 
-    public void setNombre(String nombre) {
-        Nombre = nombre;
-    }
-
+    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -24,28 +46,36 @@ public class Usuario {
         this.id = id;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public String getApellido() {
-        return Apellido;
+        return apellido;
     }
 
     public void setApellido(String apellido) {
-        Apellido = apellido;
+        this.apellido = apellido;
     }
 
     public String getTelefono() {
-        return Telefono;
+        return telefono;
     }
 
     public void setTelefono(String telefono) {
-        Telefono = telefono;
+        this.telefono = telefono;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
     }
 
     public String getEmail() {

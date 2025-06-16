@@ -8,19 +8,16 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
-
 @Repository
 @Transactional
-public class UsuarioDaoImp implements UsuarioDao{
+public class UsuarioDaoImp implements UsuarioDao {
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
-    public List<Usuario> obtenerUsuarios(){
-
-        private EntityManager entityManager;
-
-        String query = "from Usuario";
-
-        return entityManager.createQuery(query).getResultList();
+    public List<Usuario> obtenerUsuarios() {
+        String query = "FROM Usuario";
+        return entityManager.createQuery(query, Usuario.class).getResultList();
     }
 }
