@@ -17,7 +17,7 @@ public class UsuarioDaoImp implements UsuarioDao {
 
     @Override
     public List<Usuario> obtenerUsuarios() {
-        String query = "FROM Usuario";
+        String query = "from Usuario";
         return entityManager.createQuery(query, Usuario.class).getResultList();
     }
 }

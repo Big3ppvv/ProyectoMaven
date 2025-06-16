@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "usuario") // Cambiado de "usuarios" a "usuario" para coincidir con tu tabla MySQL
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,19 +16,19 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nombre", nullable = false)
+    @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
 
-    @Column(name = "apellido", nullable = false)
+    @Column(name = "apellido", nullable = false, length = 50)
     private String apellido;
 
-    @Column(name = "telefono")
+    @Column(name = "telefono", length = 50)
     private String telefono;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password", nullable = false, length = 50)
     private String password;
 
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(name = "email", nullable = false, unique = true, length = 255)
     private String email;
 
     // Constructor sin id (para crear nuevos usuarios)
