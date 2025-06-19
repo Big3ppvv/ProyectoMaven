@@ -3,8 +3,6 @@ package com.proyect.demo.controller;
 import com.proyect.demo.dao.UsuarioDao;
 import com.proyect.demo.models.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,31 +39,16 @@ public class UsuarioController {
         return usuarios;
     }
 
-    // Endpoint para usuarios de la base de datos con manejo de errores
+    // Endpoint para usuarios de la base de datos
     @GetMapping(value = "api/usuarios")
-    public ResponseEntity<?> getUsuario(){
-        try {
-            List<Usuario> usuarios = usuarioDao.obtenerUsuarios();
-            if (usuarios.isEmpty()) {
-                return ResponseEntity.ok("No hay usuarios registrados en la base de datos");
-            }
-            return ResponseEntity.ok(usuarios);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error al obtener usuarios: " + e.getMessage());
-        }
+    public List<Usuario> getUsuario(){
+        return usuarioDao.obtenerUsuarios();
     }
 
-    // Endpoint adicional para verificar conexión
+    // Endpoint para verificar conexión
     @GetMapping(value = "api/test-connection")
-    public ResponseEntity<String> testConnection() {
-        try {
-            usuarioDao.obtenerUsuarios();
-            return ResponseEntity.ok("Conexión a la base de datos exitosa");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error de conexión: " + e.getMessage());
-        }
+    public String testConnection() {
+        usuarioDao.obtenerUsuarios();
+        return "Conexión a la base de datos exitosa";
     }
 }
