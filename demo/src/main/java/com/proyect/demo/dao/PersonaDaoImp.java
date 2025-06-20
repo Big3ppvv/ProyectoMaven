@@ -17,7 +17,8 @@ public class PersonaDaoImp implements PersonaDao{
 
     @Override
     public List<Persona> obtenerPersona() {
-        String query = "SELECT u FROM persona u";
+        // Corregido: usar el nombre de la clase de entidad, no el nombre de la tabla
+        String query = "SELECT p FROM Persona p";
         return entityManager.createQuery(query, Persona.class).getResultList();
     }
 }
