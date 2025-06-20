@@ -8,16 +8,15 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Transactional
 @Repository
-public class PersonaDaoImp implements PersonaDao{
+@Transactional
+public class PersonaDaoImp implements PersonaDao {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
-    public List<Persona> obtenerPersona() {
-        // Corregido: usar el nombre de la clase de entidad, no el nombre de la tabla
+    public List<Persona> obtenerPersonas() {
         String query = "SELECT p FROM Persona p";
         return entityManager.createQuery(query, Persona.class).getResultList();
     }
