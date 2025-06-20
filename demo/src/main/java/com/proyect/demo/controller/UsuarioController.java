@@ -45,10 +45,5 @@ public class UsuarioController {
         return usuarioDao.obtenerUsuarios();
     }
 
-    // Endpoint para verificar conexión
-    @GetMapping(value = "api/test-connection")
-    public String testConnection() {
-        usuarioDao.obtenerUsuarios();
-        return "Conexión a la base de datos exitosa";
-    }
+
 }

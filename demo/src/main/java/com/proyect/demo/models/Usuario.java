@@ -26,7 +26,7 @@ public class Usuario {
     @Column(name = "telefono", length = 50)
     private String telefono;
 
-    @JsonIgnore // Para no exponer la contraseña en las respuestas JSON
+     // Para no exponer la contraseña en las respuestas JSON
     @Column(name = "password", nullable = false, length = 50)
     private String password;
 
